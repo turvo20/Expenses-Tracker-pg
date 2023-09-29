@@ -3,7 +3,7 @@ import cors from "cors";
 import { config } from "./src/config/index.js";
 import conectardb from "./src/db/db.js";
 import morgan from "morgan";
-import helmet from 'helmet';
+// import helmet from 'helmet';
 import path from 'path'
 import router from "./src/routers/index.js";
 
