@@ -1,18 +1,18 @@
 import express from "express";
 import cors from "cors";
-import { config } from "./src/config/index.js";
 import conectardb from "./src/db/db.js";
 import morgan from "morgan";
-// import helmet from 'helmet';
+import helmet from 'helmet';
 import path from 'path'
-import router from "./src/routers/index.js";
+
+import authRouter from "./src/routers/Auth.router.js";
 
 const app = express();
 
 await conectardb();
 app.use(express.json());
 app.use(morgan('dev'))
-// app.use(helmet())
+app.use(helmet())
 app.use(express.static(path.resolve('./src/public')))
 
 // const dominiosPermitidos = [process.env.FRONTEND_URL];
@@ -30,7 +30,7 @@ app.use(express.static(path.resolve('./src/public')))
 
 app.use(cors({ origin:'*'}));
 
-app.use("/api", router);
+app.use("/api/auth", authRouter);
 // app.use("/api/pacientes", pacienteRoutes);
 
 const PORT = process.env.PORT || 3000;
