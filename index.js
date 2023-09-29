@@ -33,7 +33,9 @@ app.use(cors({ origin:'*'}));
 app.get('/api/', (req, res) => {
   res.send('funciona');
 })
-
+app.get('/api/v2', (req, res) => {
+  res.send('funciona');
+})
 // app.use("/api/auth", authRouter);
 // app.use("/api/pacientes", pacienteRoutes);
 
