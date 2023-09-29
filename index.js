@@ -36,7 +36,7 @@ app.get('/api/', (req, res) => {
 app.get('/api/v2', (req, res) => {
   res.send('funciona');
 })
-// app.use("/api/auth", authRouter);
+app.use("/api/auth", authRouter);
 // app.use("/api/pacientes", pacienteRoutes);
 
 const PORT = process.env.PORT || 3000;
