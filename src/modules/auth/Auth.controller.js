@@ -4,7 +4,7 @@ import AuthServices from "./Auth.service.js";
 
 
 
-let AuthController = {}
+const AuthController = {}
 
 
 AuthController.Create = [
@@ -65,11 +65,6 @@ AuthController.Dalete = [
     
     }
 ]
-
-
-
-
-
 
 
 
