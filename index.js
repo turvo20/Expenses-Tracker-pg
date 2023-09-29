@@ -5,6 +5,7 @@ import conectardb from "./src/db/db.js";
 import morgan from "morgan";
 import helmet from "helmet";
 import path from 'path'
+import router from "./src/routers/index.js";
 
 const app = express();
 
@@ -29,7 +30,7 @@ await conectardb();
 
 app.use(cors({ origin:'*'}));
 
-// app.use("/api/veterinarios", veterinarioRoutes);
+app.use("/api", router);
 // app.use("/api/pacientes", pacienteRoutes);
 
 const PORT = process.env.PORT || 3000;

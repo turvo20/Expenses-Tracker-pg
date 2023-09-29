@@ -1,5 +1,5 @@
 import { sequelizeInstance } from "../config/index.js"
-
+import {UserModel} from "../modules/models/index.js"
 
 
 const conectardb = async () => { 
