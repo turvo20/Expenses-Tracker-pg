@@ -30,8 +30,8 @@ app.use(express.static(path.resolve('./src/public')))
 
 app.use(cors({ origin:'*'}));
 
-app.get('/api/',(res)=>{
-  res.send('funciona')
+app.get('/api/', (req, res) => {
+  res.send('funciona');
 })
 
 // app.use("/api/auth", authRouter);
