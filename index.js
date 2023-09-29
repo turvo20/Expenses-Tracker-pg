@@ -12,7 +12,7 @@ const app = express();
 await conectardb();
 app.use(express.json());
 app.use(morgan('dev'))
-app.use(helmet())
+// app.use(helmet())
 app.use(express.static(path.resolve('./src/public')))
 
 // const dominiosPermitidos = [process.env.FRONTEND_URL];
