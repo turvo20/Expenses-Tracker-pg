@@ -3,17 +3,17 @@ import cors from "cors";
 import { config } from "./src/config/index.js";
 import conectardb from "./src/db/db.js";
 import morgan from "morgan";
-import helmet from "helmet";
+import helmet from 'helmet';
 import path from 'path'
 import router from "./src/routers/index.js";
 
 const app = express();
 
+await conectardb();
 app.use(express.json());
 app.use(morgan('dev'))
 app.use(helmet())
-await conectardb();
-    app.use(express.static(path.resolve('./src/public')))
+app.use(express.static(path.resolve('./src/public')))
 
 // const dominiosPermitidos = [process.env.FRONTEND_URL];
 
