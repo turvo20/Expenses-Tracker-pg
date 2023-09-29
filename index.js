@@ -5,7 +5,7 @@ import morgan from "morgan";
 import helmet from 'helmet';
 import path from 'path'
 
-import authRouter from "./src/routers/Auth.router.js";
+// import authRouter from "./src/routers/Auth.router.js";
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.use(express.static(path.resolve('./src/public')))
 
 app.use(cors({ origin:'*'}));
 
-app.use("/api/auth", authRouter);
+// app.use("/api/auth", authRouter);
 // app.use("/api/pacientes", pacienteRoutes);
 
 const PORT = process.env.PORT || 3000;
