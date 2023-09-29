@@ -5,7 +5,7 @@ import morgan from "morgan";
 import helmet from 'helmet';
 import path from 'path'
 
-// import authRouter from "./src/routers/Auth.router.js";
+import authRouter from "./src/routers/Auth.router.js";
 
 const app = express();
 
