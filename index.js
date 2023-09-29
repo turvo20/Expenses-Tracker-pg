@@ -32,8 +32,8 @@ app.use(cors({ origin:'*'}));
 // app.use("/api/veterinarios", veterinarioRoutes);
 // app.use("/api/pacientes", pacienteRoutes);
 
-const PORT = config.SERVER_PORT || 4000;
+const PORT = config.PORT || 4000;
 
-app.listen(PORT, () => {
+app.listen(PORT,"0.0.0.0", () => {
   console.log(`Servidor funcionando en el puerto ${PORT}`)
 })

@@ -2,7 +2,7 @@ import 'dotenv/config'
 
 
 export default {
-    SERVER_PORT: process.env.SERVER_PORT || 6500,
+    PORT: process.env.PORT || 6500,
     HOST: process.env.HOST + process.env.SERVER_PORT,
     DB: {
         POSTGRES_USER: process.env.POSTGRES_USER,
