@@ -1,5 +1,5 @@
 
-import AuthServices from "./Auth.service.js";
+import AuthServices from "../modules/auth/Auth.service.js";
 
 export const createUser = async (req, res) =>{
         

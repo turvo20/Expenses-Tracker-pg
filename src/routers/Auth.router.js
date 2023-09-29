@@ -2,7 +2,7 @@ import { Router } from 'express'
 
 import { validarCampos } from '../Middleware/index.js'
 import { check } from 'express-validator'
-import { Confirmar, LoginUser, createUser } from '../modules/auth/auth.controller.js'
+import { Confirmar, LoginUser, createUser } from '../controllers/Auth.controller.js'
 
 
 
