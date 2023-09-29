@@ -1,7 +1,7 @@
 
 import AuthServices from "./Auth.service.js";
 
-const createUser = async (req, res) =>{
+export const createUser = async (req, res) =>{
         
     try {
         const resp = await AuthServices.Create({...req.body});
@@ -11,7 +11,7 @@ const createUser = async (req, res) =>{
         res.status(400).json({message: error.message});
     }
 }
-const LoginUser =  async (req, res) =>{
+export const LoginUser =  async (req, res) =>{
     try {
         const resp = await AuthServices.Login({...req.body});
         res.status(200).json(resp)
@@ -22,7 +22,7 @@ const LoginUser =  async (req, res) =>{
     }
 }
 
-const Confirmar = async (req, res) =>{
+export const Confirmar = async (req, res) =>{
     try {
         const resp = await AuthServices.Confirmed({...req.params});
         res.status(200).json(resp)
@@ -35,8 +35,3 @@ const Confirmar = async (req, res) =>{
 
 
 
-export {
-    createUser,
-    LoginUser,
-    Confirmar
-};
