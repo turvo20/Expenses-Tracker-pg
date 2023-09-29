@@ -1,7 +1,8 @@
 import { Router } from 'express'
-import { AuthController } from '../modules/auth/index.js'
+
 import { validarCampos } from '../Middleware/index.js'
 import { check } from 'express-validator'
+import AuthController from '../modules/auth/auth.controller.js'
 
 
 
