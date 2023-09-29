@@ -15,8 +15,11 @@ const databaseConnectionSetup = () => {
             dialect,
             host,
             schema: 'public',
-            dialectOptions: {
-                multipleStatements: true
+                dialectOptions: {
+                multipleStatements: true,
+                ssl: {
+                    require: true, // Opción adicional para requerir SSL
+                  },
             },
             logging: false,
             timezone: '-06:00',
