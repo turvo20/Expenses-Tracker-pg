@@ -1,5 +1,5 @@
 import { sequelizeInstance } from "../config/index.js"
-import {UserModel} from "../modules/models/index.js"
+import {CategoriesModel, ExpenseModel, UserModel} from "../modules/models/index.js"
 
 
 const conectardb = async () => { 
@@ -9,9 +9,13 @@ const conectardb = async () => {
 
         // ASSOCIATIONS
 
+        ExpenseModel.belongsTo(UserModel, { foreignKey: 'user_id', onDelete: 'CASCADE' });
+
+        ExpenseModel.belongsTo(CategoriesModel, { foreignKey: 'category_id', onDelete: 'CASCADE' });
+         
 
 
-        await sequelizeInstance.sync({ alter: false })
+        await sequelizeInstance.sync({ alter: true })
         .then(async () => {
             console.log('Connection to db has been succesful')
         })

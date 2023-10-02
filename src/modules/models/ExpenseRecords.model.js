@@ -31,6 +31,10 @@ ExpenseModel.init({
             key:'category_id'
         }
     },
+    description :{
+        type:DataTypes.STRING,
+        allowNull:false
+    },
     expense_date :{
         type:DataTypes.DATE,
         allowNull:false,
@@ -39,6 +43,11 @@ ExpenseModel.init({
     amount :{
         type:DataTypes.FLOAT,
         allowNull:false
+    },
+    is_active :{
+        type:DataTypes.BOOLEAN,
+        allowNull:false,
+        defaultValue:true
     }
 },{
     sequelize:db,

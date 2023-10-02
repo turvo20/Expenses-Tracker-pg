@@ -1,6 +1,6 @@
-import { config } from "../../../../config";
-import { UserModel } from "../../../models";
 import jwt from 'jsonwebtoken'
+import { config } from '../config/index.js';
+import { UserModel } from '../modules/models/index.js';
 
 const authenticateMiddleware = async (req, res, next) => {
     try {
@@ -15,16 +15,17 @@ const authenticateMiddleware = async (req, res, next) => {
         const decodedToken = jwt.verify(token, config.TOKEN_SECRET); // Reemplaza 'JWT_SECRET' con tu secreto de JWT
 
         // Buscar al usuario en la base de datos por su ID (u otro identificador único)
-        const user = await UserModel.findByPk(decodedToken.userId);
+        const user = await UserModel.findOne({where:{email:decodedToken.userEmail}})
 
         if (!user) {
             return res.status(401).json({ error: 'Usuario no encontrado' });
         }
-
+        
         // Asignar la información del usuario al objeto de solicitud (req.user)
-        req.user = {
-            userId: decodedToken.userId,
-            tenantId: user.tenant_id,
+        req.user = { 
+            userId: user.id,
+            userEmail:decodedToken.userEmail,
+            
         };
 
         next(); // Continuar con la ejecución de la ruta

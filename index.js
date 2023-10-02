@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import path from 'path'
 
 import authRouter from "./src/routers/Auth.router.js";
+import router from "./src/routers/index.js";
 
 const app = express();
 
@@ -30,13 +31,8 @@ app.use(express.static(path.resolve('./src/public')))
 
 app.use(cors({ origin:'*'}));
 
-app.get('/api/', (req, res) => {
-  res.send('funciona');
-})
-app.get('/api/v2', (req, res) => {
-  res.send('funciona');
-})
-app.use("/api/auth", authRouter);
+
+app.use("/api", router);
 // app.use("/api/pacientes", pacienteRoutes);
 
 const PORT = process.env.PORT || 3000;

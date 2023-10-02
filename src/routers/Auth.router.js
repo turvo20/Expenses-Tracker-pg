@@ -1,5 +1,4 @@
 import { Router } from 'express'
-
 import { validarCampos } from '../Middleware/index.js'
 import { check } from 'express-validator'
 import { Confirmar, LoginUser, createUser } from '../controllers/Auth.controller.js'
@@ -11,12 +10,14 @@ const authRouter = Router()
 authRouter.get('/',(req,res)=>{
     res.send('funciona')
 })
-// authRouter.post('/sing-in',
-// [
-//     check('email', 'El email es obligatorio').isEmail(),
-//     check('password', 'El password debe de ser de 6 caracteres').isLength({ min: 6 }),
-//     validarCampos
-// ], LoginUser)
+
+authRouter.post('/sing-in',
+[
+    check('email', 'El email es obligatorio').isEmail(),
+    check('password', 'El password debe de ser de 6 caracteres').isLength({ min: 6 }),
+    validarCampos
+], LoginUser)
+
 authRouter.post('/sing-up',
 [ // middlewares
         check('fullname', 'El nombre es obligatorio').not().isEmpty(),
@@ -26,6 +27,6 @@ authRouter.post('/sing-up',
         validarCampos
 ],createUser)
 
-// authRouter.get('/confirmed/:token', Confirmar)
+authRouter.get('/confirmed/:token', Confirmar)
 
 export default authRouter
