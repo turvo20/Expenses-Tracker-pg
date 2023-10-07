@@ -31,6 +31,14 @@ UserModel.init({
         type: DataTypes.STRING,
         allowNull: false
     },
+    telefono: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    web: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     token: {
         type: DataTypes.STRING,
         allowNull: true

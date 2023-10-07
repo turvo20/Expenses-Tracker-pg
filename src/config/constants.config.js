@@ -15,5 +15,11 @@ export default {
     PAYPAL_CLIENT_ID: process.env.CLIENT_ID,
     PAYPAL_SECRET_KEY: process.env.SECRET_KEY,
     PAYPAL_API: 'https://api-m.sandbox.paypal.com',
-    TOKEN_SECRET: process.env.JWT_SECRET
+    TOKEN_SECRET: process.env.JWT_SECRET,
+    HOST_EMAIL: process.env.EMAIL_HOST,
+    PORT_EMAIL: process.env.EMAIL_PORT,
+    AUTH_EMAIL: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    }
 }

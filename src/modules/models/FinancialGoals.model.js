@@ -43,6 +43,17 @@ FinancialGoalModel.init({
     current_progress :{
         type:DataTypes.DECIMAL(10, 2),
         allowNull:false
+    },
+    status:{
+        type:DataTypes.ENUM,
+        values:['success', 'failed', 'complete','Incomplete'],
+        allowNull:false,
+        defaultValue:'Incomplete'
+    },
+    is_active:{
+        type:DataTypes.BOOLEAN,
+        allowNull:false,
+        defaultValue:true
     }
 },{
     sequelize:db,
