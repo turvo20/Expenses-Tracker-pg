@@ -52,7 +52,8 @@ AuthServices.Login = async (data) =>{
     return{
         ok:true,
       id: usuario.id,
-      nombre: usuario.username,
+      nombre: usuario.fullname,
+      username: usuario.username,
       email: usuario.email,
       token: generatetoken(usuario.username,usuario.email),
     };
