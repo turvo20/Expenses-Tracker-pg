@@ -9,7 +9,7 @@ const AuthServices = {};
 
 
 AuthServices.Create = async (data) =>{
-    const {fullname,email, username,password} =data
+    const {fullname,email,telefono, username,password} =data
     const exist =await  AuthServices.verifyAlreadyExist(email, username)
     // console.log(exist.ok)
     if(exist.ok){
@@ -18,6 +18,7 @@ AuthServices.Create = async (data) =>{
     const userDTO = {
         fullname ,
         username,
+        telefono,
         email,
         password: await argon.hash(password),
         token: await generatetoken(username,email)
@@ -54,6 +55,7 @@ AuthServices.Login = async (data) =>{
       id: usuario.id,
       nombre: usuario.fullname,
       username: usuario.username,
+      telefono: usuario.telefono,
       email: usuario.email,
       token: generatetoken(usuario.username,usuario.email),
     };
@@ -199,11 +201,16 @@ AuthServices.actualizarPerfil = async (id, data) => {
     }
   }
 
+  if(await !argon.verify(usuario.password, data.password)){
+      ususario.password = await argon.hash(data.password)
+  }
+
   try {
     ususario.fullname = data.fullname;
     ususario.email = data.email;
     ususario.web = data.web;
     ususario.telefono = data.telefono;
+
 
     const usaurioActualizado = await ususario.save();
     return {
