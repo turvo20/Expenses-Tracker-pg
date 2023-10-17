@@ -230,20 +230,20 @@ AuthServices.actualizarPerfil = async (id, data) => {
 
 AuthServices.actualizarPassword = async (data, id) => {
   // Leer los datos
-  const { pwd_actual, pwd_nuevo } = data;
+  const { password } = data;
 
   // Comprobar que el ususario existe
-  const ususario = await UserModel.findById(id);
+  const ususario = await UserModel.findByPk(id);
   if (!ususario) {
     const error = new Error("Hubo un error");
     return { ok: false, status: 400, message: error.message };
   }
 
   // Comprobar su password
-  if (await !argon.verify(pwd_actual, pwd_nuevo)) {
+  if (await !argon.verify(ususario.password, password)) {
     // Almacenar el nuevo password
 
-    ususario.password = pwd_nuevo;
+    ususario.password =await argon.hash(password) ;
     await ususario.save();
     return { ok: true, message: "Password Almacenado Correctamente" };
   } else {
