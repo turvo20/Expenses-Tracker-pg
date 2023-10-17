@@ -132,7 +132,7 @@ AuthServices.olvidePassword = async (email) => {
     return {
       ok: true,
       message: "Hemos enviado un email con las instrucciones",
-      codigo: token
+      codigo: existUser.token
     };
   } catch (error) {
     console.log(error);
