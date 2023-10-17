@@ -82,7 +82,6 @@ authRouter.put(
       }),
       validarCampos,
   ],
-  authenticateMiddleware,
   actualizarPassword
 );
 
