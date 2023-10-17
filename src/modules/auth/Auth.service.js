@@ -2,6 +2,8 @@ import argon from "argon2";
 import { UserModel } from "../models/index.js";
 import generatetoken from "../../helpers/jwt.js";
 import emailOlvidePassword from "../../helpers/emailOlvidePassword.js";
+import generateUniqueCode from "../../helpers/generateUniqueCode.js";
+import { token } from "morgan";
 
 const AuthServices = {};
 
@@ -117,7 +119,7 @@ AuthServices.olvidePassword = async (email) => {
   }
 
   try {
-    existUser.token = generatetoken(existUser.username, email);
+    existUser.token = generateUniqueCode();
     await existUser.save();
 
     // Enviar Email con instrucciones
@@ -130,6 +132,7 @@ AuthServices.olvidePassword = async (email) => {
     return {
       ok: true,
       message: "Hemos enviado un email con las instrucciones",
+      codigo: token
     };
   } catch (error) {
     console.log(error);
