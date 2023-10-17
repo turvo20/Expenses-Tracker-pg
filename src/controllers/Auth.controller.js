@@ -82,7 +82,7 @@ export const Confirmar = async (req, res) =>{
  export const actualizarPerfil = async (req, res) => {
     const id = req.params.id
     try {
-        const resp = await AuthServices.actualizarPerfil(id,...req.body);
+        const resp = await AuthServices.actualizarPerfil(id,req.body);
         res.status(200).json(resp)
     } catch (error) {
         console.log(error)

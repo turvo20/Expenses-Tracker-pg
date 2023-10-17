@@ -178,8 +178,8 @@ AuthServices.nuevoPassword = async (token, password) => {
 
 AuthServices.actualizarPerfil = async (id, data) => {
 
-  const ususario = await UserModel.findById(id);
-  if (!ususario) {
+  const usuario = await UserModel.findByPk(id);
+  if (!usuario) {
     const error = new Error("Hubo un error");
     return {
       ok: true,
@@ -188,7 +188,7 @@ AuthServices.actualizarPerfil = async (id, data) => {
     };
   }
 
-  if (ususario.email !== data.email) {
+  if (usuario.email !== data.email) {
     const existeEmail = await UserModel.findOne({ where:{ email} });
 
     if (existeEmail) {
@@ -202,21 +202,22 @@ AuthServices.actualizarPerfil = async (id, data) => {
   }
 
   if(await !argon.verify(usuario.password, data.password)){
-      ususario.password = await argon.hash(data.password)
+      usuario.password = await argon.hash(data.password)
   }
 
   try {
-    ususario.fullname = data.fullname;
-    ususario.email = data.email;
-    ususario.web = data.web;
-    ususario.telefono = data.telefono;
+    usuario.fullname = data.fullname;
+    usuario.email = data.email;
+    usuario.web = data.web;
+    usuario.telefono = data.telefono;
 
 
-    const usaurioActualizado = await ususario.save();
+    const usuarioActualizado = await usuario.save();
+    const { password, ...userData } = usuarioActualizado.dataValues; 
     return {
       ok: true,
       status: 200,
-      data: usaurioActualizado
+      data: userData
     }
   } catch (error) {
     console.log(error);
