@@ -92,9 +92,9 @@ export const Confirmar = async (req, res) =>{
 
 
  export const actualizarPassword = async (req, res) => {
-    const id = req.params.id
+ 
     try {
-        const resp = await AuthServices.actualizarPassword(...req.body, id);
+        const resp = await AuthServices.actualizarPassword(...req.body);
         res.status(200).json(resp)
     } catch (error) {
         console.log(error)

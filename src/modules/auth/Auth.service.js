@@ -228,12 +228,12 @@ AuthServices.actualizarPerfil = async (id, data) => {
   }
 };
 
-AuthServices.actualizarPassword = async (data, id) => {
+AuthServices.actualizarPassword = async (data) => {
   // Leer los datos
-  const { password } = data;
+  const { password, email } = data;
 
   // Comprobar que el ususario existe
-  const ususario = await UserModel.findByPk(id);
+  const ususario = await UserModel.findOne({ where:{ email}});
   if (!ususario) {
     const error = new Error("Hubo un error");
     return { ok: false, status: 400, message: error.message };
