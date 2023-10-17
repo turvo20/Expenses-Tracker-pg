@@ -77,10 +77,7 @@ authRouter.put("/perfil/:id",[
 authRouter.put(
   "/actualizar-password",
   [
-    check("pwd_actual", "El password debe de ser de 6 caracteres").isLength({
-        min: 6,
-      }),
-      check("pwd_nuevo", "El password debe de ser de 6 caracteres").isLength({
+    check("password", "El password debe de ser de 6 caracteres").isLength({
         min: 6,
       }),
       validarCampos,
