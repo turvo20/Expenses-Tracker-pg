@@ -233,18 +233,22 @@ AuthServices.actualizarPassword = async (data) => {
   const { password, email } = data;
 
   // Comprobar que el ususario existe
-  const ususario = await UserModel.findOne({ where:{ email}});
-  if (!ususario) {
+  const usuario = await UserModel.findOne({ where:{ email}});
+  if (!usuario) {
     const error = new Error("Hubo un error");
     return { ok: false, status: 400, message: error.message };
   }
+  // console.log(usuario)
 
   // Comprobar su password
-  if (await !argon.verify(ususario.password, password)) {
+  const isPasswordValid = await argon.verify(usuario.password, data.password);
+  // console.log(isPasswordValid);
+  if (!isPasswordValid) {
     // Almacenar el nuevo password
 
-    ususario.password =await argon.hash(password) ;
-    await ususario.save();
+    usuario.password =await argon.hash(password) ;
+    // console.log(usuario)
+    await usuario.save();
     return { ok: true, message: "Password Almacenado Correctamente" };
   } else {
     const error = new Error("El Password Actual es Incorrecto");
