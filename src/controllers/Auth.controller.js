@@ -86,7 +86,7 @@ export const Confirmar = async (req, res) =>{
         res.status(200).json(resp)
     } catch (error) {
         console.log(error)
-        res.status(400).json({ok:false, message: error.message});
+        res.status(400).json({ok:false, message: error.message, error:error});
     }
  }
 
